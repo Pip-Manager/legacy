@@ -200,7 +200,7 @@ class MainForm(QWidget):
     def refreshList(self):
         self.clearRow()
         pipDict.clear()
-        res = subprocess.Popen("pip list", stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+        res = subprocess.Popen("pip list", shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                                bufsize=-1)
         info = res.communicate()
         pipLibs = [i.split() for i in str(info[0]).replace('\\r', '').split('\\n')[2:]][:-1]
